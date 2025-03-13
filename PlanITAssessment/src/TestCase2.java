@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class TestCase2 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
 		WebDriver driver = new ChromeDriver();
@@ -17,26 +17,20 @@ public class TestCase2 {
 
 		driver.findElement(By.linkText("Contact")).click();
 
+		for (int i = 0; i <= 5; i++) {
 
-		TestCase2 tc2 = new TestCase2();
-		TestCase2.runMultipleTimes(driver);
-	}
-	
-	
-		 public static void runMultipleTimes(WebDriver driver) {
-		
-		driver.findElement(By.id("forename")).sendKeys("Sonya");
-		driver.findElement(By.id("email")).sendKeys("sonyad@gmail.com");
-		driver.findElement(By.id("message")).sendKeys("Test");
+			driver.findElement(By.id("forename")).sendKeys("Sonya");
+			driver.findElement(By.id("email")).sendKeys("sonyad@gmail.com");
+			driver.findElement(By.id("message")).sendKeys("Test");
 
-		// Click on submit button
-		driver.findElement(By.cssSelector(".btn-contact.btn.btn-primary")).click();
+			// Click on submit button
+			driver.findElement(By.cssSelector(".btn-contact.btn.btn-primary")).click();
+			Thread.sleep(5000);
+			driver.findElement(By.xpath("//div[@class='alert alert-success']")).isDisplayed();
+			Thread.sleep(5000);
 
-		driver.findElement(By.xpath("//div[@class='alert alert-success']")).isDisplayed();
+			driver.findElement(By.xpath("//a[@class='btn']")).click();
 
-
-		driver.findElement(By.xpath("//a[@class='btn']")).click();
-
-	}
 		}
-
+	}
+}
